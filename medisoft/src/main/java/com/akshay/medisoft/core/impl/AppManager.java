@@ -3,10 +3,14 @@
  */
 package com.akshay.medisoft.core.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import com.akshay.medisoft.core.IAppManager;
 import com.akshay.medisoft.domain.MedicalRepresentative;
+import com.akshay.medisoft.domain.UserDetails;
+import com.akshay.medisoft.exception.ReportableException;
 import com.akshay.medisoft.repository.IAppRepository;
 
 /**
@@ -19,13 +23,13 @@ public class AppManager implements IAppManager {
 	IAppRepository appRepository;
 
 	@Override
-	public void enrollUser(MedicalRepresentative user) {
+	public void enrollUser(MedicalRepresentative user) throws ReportableException {
 
 		appRepository.enrollUser(user);
 	}
 
 	@Override
-	public void deleteUser(Long employeeId) {
+	public void deleteUser(Long employeeId) throws ReportableException {
 		appRepository.deleteUser(employeeId);
 	}
 
@@ -35,8 +39,13 @@ public class AppManager implements IAppManager {
 	}
 
 	@Override
-	public void updateUserDetails(MedicalRepresentative user) {
+	public void updateUserDetails(MedicalRepresentative user) throws ReportableException {
 		appRepository.updateUserDetails(user);
+	}
+
+	@Override
+	public List<UserDetails> getAllUsers() {
+		return appRepository.getAllUsers();
 	}
 
 }
